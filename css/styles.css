@@ -284,6 +284,7 @@ footer img {
   
   .header__nav ul {
     margin: 0;
+    padding: 0 20px
   }
 
 
@@ -319,13 +320,15 @@ footer img {
     text-align: center;
     width: 100%;
     height: 600px;
+    
   }
 
   .about__container-svg img {
-    width: 400px;
+    width: 100%;
     height: 300px;
     animation: none;
     position: static;
+    
   }
 
 
