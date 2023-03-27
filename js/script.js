@@ -103,7 +103,7 @@ const validateForm = () => {
   isValidEmail(inputEmail)
 
   if (isValid) {
-      enviarMessage()
+      enviarParaWhatsApp();
   }
   
 }
@@ -119,7 +119,21 @@ function enviarMessage() {
   }, 2000)
 }
 
+function enviarParaWhatsApp() {
 
+  enviarMessage();
+  const nome = inputName.value;
+  const email = inputEmail.value;
+
+  const mensagem = document.getElementById('input-msg').value;
+
+  const texto = `Nome: ${nome}\nE-mail: ${email}\nMensagem: ${mensagem}`;
+  const textoCodificado = encodeURIComponent(texto);
+  const numeroWhatsApp = '5581992029667'; // Insira o número de telefone do WhatsApp aqui (apenas números)
+  const url = `https://wa.me/${numeroWhatsApp}?text=${textoCodificado}`;
+
+  window.open(url, '_blank');
+}
 
 inputName.addEventListener('input', function(){ 
   resetInput(this);
