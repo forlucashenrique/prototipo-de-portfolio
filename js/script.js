@@ -2,7 +2,11 @@ let header = document.querySelector('header');
 let nav = document.querySelector('.header__nav');
 let links = nav.getElementsByTagName('li');
 
+const inputName = document.querySelector('#name');
+const inputEmail = document.querySelector('#email');
 
+
+let isValid = false;
 
 for (let i = 0; i < links.length; i++){
   links[i].addEventListener('click', function() {
@@ -49,4 +53,81 @@ const activeFixedHeader = () => {
 }
 
 
-window.addEventListener('scroll', activeFixedHeader)
+
+
+const isValidEmail = (email) => {
+    const regex =
+        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+    const emailValue = email.value;
+    
+
+    if(!regex.test(String(emailValue).toLowerCase())) {
+        invalidInput(email);
+        isValid = false;
+    } else {
+        resetInput(email);
+        isValid = true;
+    }
+    
+}
+
+
+const isEmpty = (elem) => {
+
+  if (!elem.value) {
+      invalidInput(elem);
+      isValid = false;
+  } else {
+     isValid = true;
+  }
+
+}
+
+const resetInput = (elem) => {
+  elem.classList.remove('invalid');
+  elem.nextElementSibling.classList.remove('error-message');
+  elem.nextElementSibling.classList.add('hidden');
+}
+
+const invalidInput = (elem) => {
+  elem.classList.add('invalid');
+  elem.nextElementSibling.classList.add('error-message');
+  elem.nextElementSibling.classList.remove('hidden');
+}
+
+
+const validateForm = () => {
+
+  isEmpty(inputName);
+  isValidEmail(inputEmail)
+
+  if (isValid) {
+      enviarMessage()
+  }
+  
+}
+
+
+function enviarMessage() {
+  const spanMessage = document.querySelector('.send-message');
+
+  spanMessage.classList.remove('hidden');
+
+  setTimeout(() => {
+    spanMessage.classList.add('hidden');
+  }, 2000)
+}
+
+
+
+inputName.addEventListener('input', function(){ 
+  resetInput(this);
+})
+
+inputEmail.addEventListener('input', function() {
+  isValidEmail(this);
+})
+
+
+window.addEventListener('scroll', activeFixedHeader); 

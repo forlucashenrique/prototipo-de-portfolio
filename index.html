@@ -56,18 +56,21 @@
       <div id="contact" class="contact__container">
         <h2>CONTACT</h2>
         <div class="contact__container-form">
+          <span class="hidden send-message">Mensagem Enviada!</span>
           <form>
             <div>
-              <input type="text" placeholder="Seu Nome">
+              <input type="text" placeholder="Seu Nome" id="name">
+              <span class="hidden error-message ">*Campo obrigatório</span>
             </div>
             <div>
-              <input type="text" placeholder="Email">
+              <input type="text" placeholder="Email" id="email">
+              <span class="hidden error-message">Email Inválido</span>
             </div>
             <div>
               <textarea placeholder="Digite uma mensagem"></textarea>
             </div>
             
-            <button type="button">Send</button>
+            <button type="button" onclick="validateForm()">Send</button>
           </form>
         </div>
       </div>
