@@ -125,7 +125,7 @@ function enviarParaWhatsApp() {
   const nome = inputName.value;
   const email = inputEmail.value;
 
-  const mensagem = document.getElementById('input-msg').value;
+  const mensagem = document.getElementById('msg').value;
 
   const texto = `Nome: ${nome}\nE-mail: ${email}\nMensagem: ${mensagem}`;
   const textoCodificado = encodeURIComponent(texto);
